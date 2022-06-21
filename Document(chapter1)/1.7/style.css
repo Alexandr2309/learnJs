@@ -1,0 +1,12 @@
+#clock{
+  font-size: 24px;
+}
+.hour {
+  color: red;
+}
+.min {
+  color: green;
+}
+.sec {
+  color: blue;
+}
