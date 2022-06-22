@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <input type="checkbox">
+  <input type="checkbox" checked>
+  <input type="text" id="message">
+
+  <h3 id="widget-title">Сообщения:</h3>
+  <ul id="messages">
+    <li id="message-1">Сообщение 1</li>
+    <li id="message-2">Сообщение 2</li>
+    <li id="message-3" data-action="delete">Сообщение 3</li>
+    <li id="message-4" data-action="edit do-not-delete">Сообщение 4</li>
+    <li id="message-5" data-action="edit delete">Сообщение 5</li>
+    <li><a href="#">...</a></li>
+  </ul>
+
+  <a href="http://site.com/list.zip">Ссылка на архив</a>
+  <a href="http://site.com/list.pdf">..И на PDF</a>
+  <script>
+    function testSelector(selector, count) {
+      const elements = document.querySelectorAll(selector);
+      let ok = elements.length === count;
+      if (!ok) console.log(`Ошибка в ${selector}`);
+    }
+    testSelector('input[type="checkbox"]', 2);
+    testSelector('input[type="checkbox"]:not(:checked)', 1);
+    testSelector('[id|="message"]', 6);
+    testSelector('[id^="message-"]', 5);
+    testSelector('a[href$="zip"]', 1);
+    testSelector('[data-action~="delete"]', 2);
+    testSelector('[data-action]:not([data-action~="delete"])', 1);
+    testSelector('#messages li:nth-child(2n)',3);
+    testSelector('h3#widget-title + *', 1);
+    testSelector('h3#widget-title ~ a', 2)
+    testSelector('#messages li:last-child a', 1);
+    /*
+Выбрать ссылку внутри последнего элемента списка #messages.
+    */
+  </script>
+</body>
+
+</html>
